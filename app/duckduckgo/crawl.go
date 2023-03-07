@@ -2,13 +2,14 @@ package duckduckgo
 
 import (
 	"errors"
+	"github.com/acheong08/DuckDuckGo-API/app/config"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 
-	"github.com/acheong08/DuckDuckGo-API/types"
-	"github.com/acheong08/DuckDuckGo-API/utils"
+	"github.com/acheong08/DuckDuckGo-API/app/types"
+	"github.com/acheong08/DuckDuckGo-API/app/utils"
 	"github.com/anaskhan96/soup"
 )
 
@@ -39,6 +40,14 @@ func get_html(search types.Search) (string, error) {
 	}
 	// Send POST request
 	var client = http.Client{}
+	proxy := config.LoadConfig().Proxy
+	if proxy != "" {
+		proxyUrl, _ := url.Parse(proxy)
+		transport := &http.Transport{
+			Proxy: http.ProxyURL(proxyUrl),
+		}
+		client.Transport = transport
+	}
 	var response, err = client.Do(&request)
 	if err != nil {
 		return "", err

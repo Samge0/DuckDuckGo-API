@@ -1,0 +1,7 @@
+{
+    "access_token": "自定义的api接口认证token",
+    "allow_origin": "*",
+    "host": "0.0.0.0",
+    "port": "8080",
+    "proxy": ""
+}

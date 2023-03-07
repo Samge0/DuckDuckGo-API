@@ -1,0 +1,19 @@
+### Send GET request with json body
+
+GET http://{{host}}:{{port}}/search/duck?query={{query}}&limit={{limit}}
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
+### Send POST request with json body
+
+POST http://{{host}}:{{port}}/search/duck
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "query": "{{query}}",
+  "limit": {{limit}},
+  "time_range": "",
+  "region": ""
+}
